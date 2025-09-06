@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jaga Kesehatan Ganteng</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cooper+Black&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .container {
+        max-width: 600px;
+        width: 100%;
+        z-index: 2;
+      }
+
+      .stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .star {
+        position: absolute;
+        background-color: #4fc3f7;
+        border-radius: 50%;
+        animation: twinkle 2s infinite;
+      }
+
+      @keyframes twinkle {
+        0% {
+          opacity: 0.2;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        100% {
+          opacity: 0.2;
+          transform: scale(1);
+        }
+      }
+
+      .moon {
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        box-shadow: 0 0 40px rgba(224, 224, 224, 0.6);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        color: #fff;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: #4fc3f7;
+        text-shadow: 2px 2px 0px #0288d1;
+      }
+
+      .message-container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        margin: 20px 0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border: 2px dashed rgba(255, 255, 255, 0.2);
+        min-height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .message-word {
+        font-family: "Cooper Black", cursive;
+        font-size: 2.2rem;
+        color: #4fc3f7;
+        margin: 8px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s, transform 0.8s;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .message-word.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .star-btn {
+        background: linear-gradient(135deg, #4fc3f7 0%, #0288d1 100%);
+        border: none;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(2, 136, 209, 0.4);
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin: 25px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .star-btn:hover {
+        transform: scale(1.1) rotate(15deg);
+        box-shadow: 0 8px 20px rgba(2, 136, 209, 0.6);
+      }
+
+      .star-btn:active {
+        transform: scale(0.95);
+      }
+
+      .instruction {
+        margin-top: 15px;
+        font-size: 1.1rem;
+        color: #4db6ac;
+      }
+
+      .footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+
+      .hearts {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .heart-particle {
+        position: absolute;
+        font-size: 20px;
+        color: #4fc3f7;
+        opacity: 0;
+        animation: float-heart 5s forwards;
+      }
+
+      @keyframes float-heart {
+        0% {
+          transform: translateY(0) translateX(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) translateX(var(--tx));
+          opacity: 0;
+        }
+      }
+
+      .reset-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid #4fc3f7;
+        border-radius: 50px;
+        padding: 10px 20px;
+        color: #4fc3f7;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: background 0.3s;
+      }
+
+      .reset-btn:hover {
+        background: rgba(79, 195, 247, 0.2);
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .message-word {
+          font-size: 1.8rem;
+        }
+
+        .message-container {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars" id="stars"></div>
+    <div class="hearts" id="hearts"></div>
+
+    <div class="container">
+      <div class="moon">🌙</div>
+      <h1>Jaga Kesehatan Ganteng</h1>
+
+      <div class="message-container" id="messageContainer">
+        <!-- Kata-kata akan muncul di sini satu per satu -->
+      </div>
+
+      <button class="star-btn" id="starBtn">
+        <i class="fas fa-star"></i>
+      </button>
+
+      <p class="instruction">Klik bintang biru untuk melihat pesan</p>
+
+      <button class="reset-btn" id="resetBtn">
+        <i class="fas fa-redo"></i> Ulangi Pesan
+      </button>
+
+      <div class="footer">
+        <p>Dikirim dengan penuh kasih sayang 💙</p>
+        <p>© 2025 - dari KAIII NIH MANIEZZZZZ</p>
+      </div>
+    </div>
+
+    <script>
+      // Data pesan yang akan ditampilkan per kata
+      const messageWords = [
+        "Jaga",
+        "kesehatan",
+        "ya",
+        "ganteng",
+        "Jangan",
+        "lupa",
+        "makan",
+        "teratur",
+        "dan",
+        "istirahat",
+        "yang",
+        "cukup",
+        "Aku",
+        "sayang",
+        "kamu 💙",
+      ];
+
+      let currentWordIndex = 0;
+      const messageContainer = document.getElementById("messageContainer");
+      const starBtn = document.getElementById("starBtn");
+      const resetBtn = document.getElementById("resetBtn");
+
+      // Fungsi untuk membuat bintang latar belakang
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const starsCount = 100;
+
+        for (let i = 0; i < starsCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          const size = Math.random() * 4 + 2;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+
+          star.style.animationDelay = `${Math.random() * 5}s`;
+
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // Fungsi untuk membuat efek partikel bintang
+      function createStarParticles() {
+        const heartsContainer = document.getElementById("hearts");
+        heartsContainer.innerHTML = "";
+
+        for (let i = 0; i < 15; i++) {
+          const heart = document.createElement("div");
+          heart.classList.add("heart-particle");
+          heart.innerHTML = "★";
+          heart.style.left = `${Math.random() * 100}%`;
+          heart.style.bottom = "0";
+          heart.style.setProperty("--tx", `${Math.random() * 100 - 50}px`);
+          heart.style.animationDelay = `${i * 0.2}s`;
+          heart.style.fontSize = `${Math.random() * 15 + 15}px`;
+
+          heartsContainer.appendChild(heart);
+        }
+      }
+
+      // Fungsi untuk menampilkan kata berikutnya
+      function showNextWord() {
+        if (currentWordIndex < messageWords.length) {
+          const wordElement = document.createElement("div");
+          wordElement.classList.add("message-word");
+          wordElement.textContent = messageWords[currentWordIndex];
+
+          messageContainer.appendChild(wordElement);
+
+          // Trigger reflow untuk memastikan animasi berjalan
+          void wordElement.offsetWidth;
+
+          // Tambah kelas visible untuk memicu animasi
+          wordElement.classList.add("visible");
+
+          currentWordIndex++;
+
+          // Buat efek partikel
+          createStarParticles();
+        }
+
+        // Nonaktifkan tombol jika semua kata sudah ditampilkan
+        if (currentWordIndex >= messageWords.length) {
+          starBtn.disabled = true;
+          starBtn.style.opacity = "0.7";
+          starBtn.style.cursor = "not-allowed";
+        }
+      }
+
+      // Fungsi untuk mereset pesan
+      function resetMessage() {
+        messageContainer.innerHTML = "";
+        currentWordIndex = 0;
+        starBtn.disabled = false;
+        starBtn.style.opacity = "1";
+        starBtn.style.cursor = "pointer";
+      }
+
+      // Event listeners
+      starBtn.addEventListener("click", showNextWord);
+      resetBtn.addEventListener("click", resetMessage);
+
+      // Jalankan saat halaman dimuat
+      window.onload = function () {
+        createStars();
+      };
+    </script>
+  </body>
+</html>
